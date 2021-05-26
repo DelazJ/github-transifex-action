@@ -83,3 +83,7 @@ inputs:
     description: 'Pushes or pulls things from transifex in parallel'
     required: false
     default: 'false'
+  pull_mode:
+    description: 'Pulls depending on the mode or variant of the translation file you want. Possible values are developer (default), translator, reviewed, onlyreviewed, onlytranslated and sourceastranslation.'
+    required: false
+    default: ''
