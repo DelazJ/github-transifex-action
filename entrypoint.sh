@@ -12,6 +12,7 @@ MASTER_BRANCH=${INPUT_MASTER_BRANCH:-master}
 REMOTE=${INPUT_REMOTE:-origin}
 TRANSLATIONS_FOLDER=${INPUT_TRANSLATIONS_FOLDER}
 SKIP_PUSH_COMMIT=${INPUT_SKIP_PUSH_COMMIT}
+PULL_MODE=${INPUT_PULL_MODE}
 
 COMMITER_EMAIL=${INPUT_COMMITER_EMAIL:-'git-action@transifex.com'}
 COMMITTER_NAME=${INPUT_COMMITTER_NAME:-'Transifex Github action'}
@@ -47,6 +48,18 @@ fi
 
 if [[ "$INPUT_PULL_TRANSLATIONS" = true ]] ; then
     args+=( "-a" )
+fi
+
+if [[ "$INPUT_PULL_MODE" = 'translator' ]] ; then
+    args+=( "--mode translator" )
+elif [[ "$INPUT_PULL_MODE" = 'reviewed' ]] ; then
+    args+=( "--mode reviewed" )
+elif [[ "$INPUT_PULL_MODE" = 'onlyreviewed' ]] ; then
+    args+=( "--mode onlyreviewed" )
+elif [[ "$INPUT_PULL_MODE" = 'onlytranslated' ]] ; then
+    args+=( "--mode onlytranslated" )
+elif [[ "$INPUT_PULL_MODE" = 'sourceastranslator' ]] ; then
+    args+=( "--mode sourceastranslator" )
 fi
 
 if [[ "$INPUT_GIT_FLOW" = true ]] ; then
